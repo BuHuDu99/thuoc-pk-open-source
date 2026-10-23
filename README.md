@@ -1,4 +1,4 @@
-# Tra cứu phòng khám — mã nguồn mở
+# Tra cứu — mã nguồn mở
 
 Mã nguồn React/TypeScript và ứng dụng Electron hỗ trợ Windows 7 SP1. Giấy phép MIT áp dụng cho phần mã do dự án phát triển; không cấp quyền đối với dữ liệu hoặc phần mềm bên thứ ba.
 
