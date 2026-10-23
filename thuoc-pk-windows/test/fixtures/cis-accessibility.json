@@ -1,0 +1,13 @@
+{
+  "status": "scan",
+  "processName": "CISV3115YD",
+  "processId": 115,
+  "window": "4096",
+  "records": [
+    {"id":"weight","name":"Cân nặng:","value":"12,5 kg","node":"4.1","scope":"8192","provider":"uia"},
+    {"id":"tuoi","name":"Tuổi:","value":"18 tháng","node":"4.2","scope":"8192","provider":"uia"},
+    {"id":"patcd","name":"Mã BN:","value":"TEST-PATIENT-001","node":"4.3","scope":"8192","provider":"uia"},
+    {"id":"height","name":"Chiều cao:","value":"82","node":"4.4","scope":"8192","provider":"uia"},
+    {"id":"","name":"Cân nặng:","value":"","node":"4.5","scope":"8192","provider":"msaa"}
+  ]
+}

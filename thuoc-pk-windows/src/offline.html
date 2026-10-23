@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'unsafe-inline'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thuốc PK · Mất kết nối</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; color: #0000a0; background: #ffffff; font: 15px/1.55 Arial, sans-serif; }
+      main { width: min(100%, 380px); padding: 28px; border: 1px solid #91b5ce; border-radius: 18px; background: #fff; box-shadow: 0 18px 55px rgba(0,0,0,.12); text-align: center; }
+      .icon { width: 54px; height: 54px; margin: auto; display: grid; place-items: center; border: 1px solid #91b5ce; border-radius: 15px; color: #0000a0; background: #fff; font-size: 28px; font-weight: bold; }
+      h1 { margin: 18px 0 8px; font-size: 21px; }
+      p { margin: 0; color: #36536b; }
+      small { display: block; min-height: 20px; margin-top: 8px; color: #36536b; }
+      button { width: 100%; margin-top: 20px; padding: 12px 16px; border: 1px solid #91b5ce; border-radius: 11px; color: #0000a0; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+      button:hover { background: #e4f4ff; }
+    </style>
+    <link rel="stylesheet" href="cis-ui.css" />
+    <link rel="stylesheet" href="local-pages.css" />
+  </head>
+  <body>
+    <main>
+      <div class="icon">+</div>
+      <h1>Không thể kết nối</h1>
+      <p>Kiểm tra Internet rồi thử tải lại trang tra cứu.</p>
+      <small id="reason"></small>
+      <button type="button" onclick="location.href='https://thuoc-pk.vercel.app/'">Thử lại</button>
+    </main>
+    <script>
+      const reason = new URLSearchParams(location.search).get('reason')
+      if (reason) document.getElementById('reason').textContent = reason
+    </script>
+  </body>
+</html>

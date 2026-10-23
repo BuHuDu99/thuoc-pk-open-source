@@ -1,0 +1,83 @@
+{
+  "name": "thuoc-pk-windows",
+  "version": "1.4.6",
+  "private": true,
+  "description": "Cửa sổ nổi Tra cứu kết nối trực tiếp thuoc-pk.vercel.app trên Windows 7 trở lên",
+  "main": "src/main.js",
+  "author": "Thuoc PK",
+  "license": "MIT",
+  "scripts": {
+    "preview:mac": "node scripts/start-preview-mac.js",
+    "start": "electron .",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/lock.js && node --check src/das-contract.js && node --check src/das-bridge.js && node --check src/das-settings.js && node --check src/update-errors.js",
+    "dist:win7:x64": "electron-builder --win zip --x64",
+    "dist:win7:x86": "electron-builder --win zip --ia32",
+    "dist:win7": "electron-builder --win zip --x64 --ia32",
+    "dist:win7:installer": "electron-builder --win nsis-web --x64 --ia32",
+    "test": "node --test test/*.test.js",
+    "preview:build": "node scripts/build-preview.js"
+  },
+  "devDependencies": {
+    "electron": "22.3.27",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "beforePack": "scripts/verify-native-helper.js",
+    "appId": "vn.tracuu.popup",
+    "productName": "Tra cứu",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "assets/icon.png",
+      "verifyUpdateCodeSignature": false,
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "artifactName": "TraCuu-Win7-${arch}.${ext}"
+    },
+    "nsisWeb": {
+      "artifactName": "TraCuu-Setup-${version}.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Tra cứu",
+      "uninstallDisplayName": "Tra cứu"
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://thuoc-pk.vercel.app/updates/windows/"
+    },
+    "extraResources": [
+      {
+        "from": "src/das-reader.ps1",
+        "to": "das-reader.ps1"
+      },
+      {
+        "from": "src/das-msaa.cs",
+        "to": "das-msaa.cs"
+      },
+      {
+        "from": "src/das-msaa.dll",
+        "to": "das-msaa.dll"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-updater": "6.6.2"
+  }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'" />
+  <title>Kết nối ứng dụng khám</title>
+  <link rel="stylesheet" href="cis-ui.css" />
+  <link rel="stylesheet" href="das-settings.css" />
+</head>
+<body>
+  <header class="page-header"><div class="app-mark" aria-hidden="true">+</div><div><div class="eyebrow">TRA CỨU · KẾT NỐI</div><h1>Thông tin từ ứng dụng khám</h1><p>CISV3115YD <span aria-hidden="true">→</span> Tra cứu</p></div></header>
+  <main>
+    <div id="platform-note" class="notice" hidden>Đang xem trên macOS. Bạn có thể xem giao diện minh họa tại đây; đọc hồ sơ CIS cần chạy bản Windows.</div>
+    <section class="connection-card" aria-labelledby="connection-heading">
+      <div class="card-heading"><div><h2 id="connection-heading">Tự điền thông tin sinh trắc</h2><p>Kết nối với cửa sổ khám đang mở.</p></div><label class="switch" aria-label="Bật tự điền"><input type="checkbox" id="enabled" /><span></span></label></div>
+      <div id="connection-status" class="status-line" role="status" aria-live="polite"><i aria-hidden="true"></i><div><strong id="status-title">Đang kiểm tra kết nối</strong><p id="status-description">Đọc thông tin ứng dụng…</p></div></div>
+      <ol class="connection-steps"><li id="step-process"><b>1</b><span>Ứng dụng khám</span></li><li id="step-fields"><b>2</b><span>Thông tin bệnh nhân</span></li><li id="step-ready"><b>3</b><span>Tự điền Tra cứu</span></li></ol>
+      <div class="reading-heading"><h3>Thông tin đọc được</h3><span id="reading-label">Chưa có dữ liệu</span></div>
+      <div class="reading-grid"><div><span>Cân nặng</span><strong><span id="reading-weight">—</span> <small>kg</small></strong></div><div><span>Tuổi</span><strong><span id="reading-age">—</span> <small id="reading-unit"></small></strong></div><div><span>Chiều cao</span><strong><span id="reading-height">—</span> <small>cm</small></strong></div></div>
+      <p class="privacy">Mã bệnh nhân dùng để nhận biết khi đổi hồ sơ, không hiển thị hoặc ghi vào nhật ký.</p>
+    </section>
+    <form id="form">
+      <section class="unit-card"><div><label for="unit">Đơn vị khi CIS chỉ ghi số tuổi</label><p>Có chữ “tháng”, “ngày” hoặc “năm”: ứng dụng tự nhận biết.</p></div><select id="unit"><option value="auto">Tự nhận biết</option><option value="years">Năm</option><option value="months">Tháng</option><option value="days">Ngày</option></select></section>
+      <div class="actions"><button id="connect" type="button" class="primary-button">Tìm lại kết nối</button><button type="submit" class="secondary-button">Lưu lựa chọn</button><button id="demo" type="button" class="text-button" hidden>Xem minh họa</button></div>
+      <p id="message" class="save-message" role="status" aria-live="polite"></p>
+      <details class="advanced"><summary>Cài đặt nâng cao</summary><p>Thông thường không cần sửa. Chỉ thay đổi khi đơn vị cung cấp CIS dùng tên trường khác.</p><label>Tên ô cân nặng<input id="weight" required /></label><label>Tên ô chiều cao<input id="height" required /></label><label>Tên ô tuổi<input id="age" required /></label><label>Tên ô lượt khám<input id="encounter" required /></label><label>Tên ô mã bệnh nhân<input id="patient" required /></label><small>Các tên thay thế cách nhau bằng dấu phẩy. Không nhập giá trị của bệnh nhân vào đây.</small></details>
+    </form>
+    <footer><span class="footer-dot"></span> Tự tìm CISV3115YD.exe · Không cần chọn đường dẫn</footer>
+  </main>
+  <script src="das-settings.js"></script>
+</body>
+</html>

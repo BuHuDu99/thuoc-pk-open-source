@@ -1,0 +1,14 @@
+**/node_modules/
+**/dist/
+**/release*/
+**/.vercel/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.log
+**/*.tsbuildinfo
+**/.DS_Store
+**/*.dll
+**/das-msaa.build.json
+**/public/updates/
+**/docs/*preview*

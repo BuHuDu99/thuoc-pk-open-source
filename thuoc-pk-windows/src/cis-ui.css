@@ -1,0 +1,24 @@
+/* CIS reference: component fonts + user-provided window (17/10/2026).
+   Only appearance tokens; no patient text or source screenshot is included. */
+:root {
+  --cis-font: Tahoma, Arial, sans-serif;
+  --cis-text: #000066;
+  --cis-label: #000000;
+  --cis-panel: #ffffff;
+  --cis-paper: #ffffff;
+  --cis-toolbar: #f0f0f0;
+  --cis-border: #abadb3;
+  --cis-border-dark: #676767;
+  --cis-selected: #3399ff;
+  --cis-focus: #ffff9d;
+  --cis-required: #ffff00;
+  --cis-alert: #ff0000;
+  font-family: var(--cis-font) !important;
+  font-size: 13px !important;
+  color-scheme: light;
+}
+html, body, button, input, select, textarea, table, th, td {
+  font-family: var(--cis-font) !important;
+  font-synthesis: none;
+}
+::selection { color: #fff; background: #3399ff; }
