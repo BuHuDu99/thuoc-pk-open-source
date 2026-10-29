@@ -6,6 +6,7 @@ const path = require('path')
 const { pathToFileURL } = require('url')
 const { DASBridge } = require('./das-bridge')
 const { describeUpdateError } = require('./update-errors')
+const { POPUP_OPTIONS, performWindowAction, registerTaskbarControls } = require('./popup-window')
 
 // Dùng thư mục ứng dụng mới để bản "Tra cứu" không bị một tiến trình
 // "Thuốc PK" cũ giữ khóa khi nâng cấp hoặc khi thử trong máy ảo.
@@ -183,8 +184,10 @@ function toggleWindow() {
   }
 }
 
-function handleSecondInstance() {
+function handleSecondInstance(_event, argv = []) {
   if (!mainWindow || mainWindow.isDestroyed()) return
+  const command = argv.find((arg) => /^--popup-(minimize|maximize|close|quit)$/.test(arg))
+  if (command && performWindowAction(mainWindow, command.slice('--popup-'.length), () => app.quit())) return
   lockApplication()
 }
 
@@ -361,6 +364,7 @@ function createTray() {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    ...POPUP_OPTIONS,
     ...initialBounds(),
     minWidth: MIN_WIDTH,
     minHeight: MIN_HEIGHT,
@@ -383,6 +387,8 @@ function createWindow() {
   })
 
   mainWindow.setMenu(null)
+  try { registerTaskbarControls({ app, window: mainWindow, nativeImage, quit: () => app.quit(), log: writeLog }) }
+  catch (_) { writeLog('Không tạo được nút taskbar; vẫn có thể dùng menu khay hệ thống.') }
   mainWindow.once('ready-to-show', ensureWindowVisible)
   mainWindow.webContents.on('did-finish-load', () => {
     const loadedUrl = mainWindow.webContents.getURL()
@@ -522,6 +528,8 @@ if (!hasSingleInstanceLock) {
 
 app.whenReady().then(() => {
   if (!hasSingleInstanceLock) return
+  // A pinned taskbar menu may outlive the running application.
+  if (process.argv.some((arg) => /^--popup-(close|quit)$/.test(arg))) { app.quit(); return }
   app.setAppUserModelId('vn.tracuu.popup')
   writeLog(`Khởi động ứng dụng ${app.getVersion()} trên ${process.platform} ${process.arch}.`)
   session.defaultSession.setPermissionRequestHandler((_webContents, _permission, callback) => callback(false))

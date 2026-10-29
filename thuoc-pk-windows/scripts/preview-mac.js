@@ -7,6 +7,7 @@ if (url.protocol !== 'http:' || url.hostname !== '127.0.0.1') throw new Error('B
 app.setPath('userData', fs.mkdtempSync(path.join(os.tmpdir(), 'tracuu-mac-preview-')))
 app.disableHardwareAcceleration()
 const root = path.resolve(__dirname, '..')
+const { POPUP_OPTIONS } = require('../src/popup-window')
 const styles = ['cis-ui.css', 'das-theme.css'].map((name) => path.join(root, 'src', name))
 const samples = [
   { label: '18 tháng · 12,5 kg · 82 cm', weight: '12.5', age: '18', unit: 'months', height: '82' },
@@ -49,7 +50,7 @@ app.whenReady().then(async () => {
     { label: 'Chỉnh sửa', submenu: [{ role: 'undo' }, { role: 'redo' }, { type: 'separator' }, { role: 'cut' }, { role: 'copy' }, { role: 'paste' }, { role: 'selectAll' }] },
     { label: 'Hiển thị', submenu: [{ role: 'reload', label: 'Tải lại' }, { role: 'toggleDevTools', label: 'Công cụ giao diện' }, { role: 'resetZoom', label: 'Cỡ chữ gốc' }, { role: 'zoomIn' }, { role: 'zoomOut' }] },
   ]))
-  window = new BrowserWindow({ title: 'Tra cứu · Xem thử trên MacBook · Số liệu mẫu', width: 440, height: 850, minWidth: 380, minHeight: 560, show: false, backgroundColor: '#ffffff', webPreferences: {
+  window = new BrowserWindow({ ...POPUP_OPTIONS, title: 'Tra cứu · Xem thử trên MacBook · Số liệu mẫu', width: 440, height: 850, minWidth: 380, minHeight: 560, show: false, backgroundColor: '#ffffff', webPreferences: {
     sandbox: true, contextIsolation: true, nodeIntegration: false, backgroundThrottling: false,
   } })
   window.on('page-title-updated', (event) => event.preventDefault())

@@ -10,3 +10,5 @@ button { height: 30px !important; margin-top: 9px !important; padding: 3px 10px 
 button:hover { border-color: #3399ff !important; background: linear-gradient(#fff, #cfecfe) !important; }
 .message, .hint { font-size: 12px !important; }
 .message.error { color: #c00000 !important; }
+body, .brand, .icon { -webkit-app-region: drag; }
+main, button, input, a, form { -webkit-app-region: no-drag; }

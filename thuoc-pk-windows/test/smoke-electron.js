@@ -1,6 +1,7 @@
 // Run with Electron. Exercises the production sandboxed preload against the
 // actual React page, using synthetic measurements and no DAS/patient access.
 const { app, BrowserWindow, ipcMain } = require('electron')
+const { POPUP_OPTIONS } = require('../src/popup-window')
 const { strict: assert } = require('assert')
 const fs = require('fs')
 const path = require('path')
@@ -32,13 +33,15 @@ async function send(state) {
 }
 app.whenReady().then(async () => {
   timer = setTimeout(() => { console.error('Renderer smoke test timed out'); app.exit(1) }, 45000)
-  window = new BrowserWindow({ width: 440, height: 850, show: false, webPreferences: { preload: path.join(__dirname, '../src/preload.js'), sandbox: true, contextIsolation: true, nodeIntegration: false, backgroundThrottling: false } })
+  window = new BrowserWindow({ ...POPUP_OPTIONS, width: 440, height: 850, show: false, webPreferences: { preload: path.join(__dirname, '../src/preload.js'), sandbox: true, contextIsolation: true, nodeIntegration: false, backgroundThrottling: false } })
   await window.loadURL('https://thuoc-pk.vercel.app/')
   await window.webContents.insertCSS(['cis-ui.css', 'das-theme.css'].map((file) => fs.readFileSync(path.join(__dirname, '../src', file), 'utf8')).join('\n'))
   for (let count = 0; count < 40; count++) {
     if (await window.webContents.executeJavaScript(`Boolean(document.querySelector('.patient-panel [role="status"]'))`)) break
     await wait(100)
   }
+  assert.equal(await window.webContents.executeJavaScript(`getComputedStyle(document.querySelector('.topbar')).getPropertyValue('-webkit-app-region')`), 'drag')
+  assert.equal(await window.webContents.executeJavaScript(`getComputedStyle(document.querySelector('.topbar button')).getPropertyValue('-webkit-app-region')`), 'no-drag')
   let result = await send({ status: 'connected', weightKg: 12.5, heightCm: 82, age: 18, ageUnit: 'months', revision: 1 })
   assert.equal(result.weight, '12.5'); assert.equal(result.age, '18'); assert.equal(result.unit, 'months')
   assert.match(result.summary, /12.5 kg/); assert.match(result.summary, /18 tháng/)

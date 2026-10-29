@@ -1,6 +1,6 @@
 {
   "name": "thuoc-pk-windows",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "private": true,
   "description": "Cửa sổ nổi Tra cứu kết nối trực tiếp thuoc-pk.vercel.app trên Windows 7 trở lên",
   "main": "src/main.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "preview:mac": "node scripts/start-preview-mac.js",
     "start": "electron .",
-    "check": "node --check src/main.js && node --check src/preload.js && node --check src/lock.js && node --check src/das-contract.js && node --check src/das-bridge.js && node --check src/das-settings.js && node --check src/update-errors.js",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/lock.js && node --check src/das-contract.js && node --check src/das-bridge.js && node --check src/das-settings.js && node --check src/update-errors.js && node --check src/popup-window.js",
     "dist:win7:x64": "electron-builder --win zip --x64",
     "dist:win7:x86": "electron-builder --win zip --ia32",
     "dist:win7": "electron-builder --win zip --x64 --ia32",

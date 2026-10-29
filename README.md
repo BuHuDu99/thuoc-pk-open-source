@@ -42,3 +42,9 @@ Desktop: `pnpm test` và `pnpm check`. Web: `pnpm build`. Các bài `smoke-*` ch
 4. Sửa mã, kiểm tra bằng `pnpm --dir duoc-tra-cuu build` và `pnpm --dir thuoc-pk-windows test`, sau đó commit/push về GitHub.
 
 GitHub Actions tự build web và kiểm tra mã desktop sau mỗi push/pull request. Codespaces dùng Linux: có thể sửa mã và chạy kiểm thử Node, nhưng không đọc CIS thật hoặc kiểm chứng cài đặt Windows 7 trong môi trường này. Bản nguồn công khai không kèm các bảng dữ liệu lâm sàng; dữ liệu riêng và thông tin cấu hình phải được cấp riêng, không commit vào kho.
+
+## Cửa sổ popup (1.4.7)
+
+Cửa sổ chính không có thanh tiêu đề Windows; kéo phần trống trên thanh Tra cứu để di chuyển và kéo mép để đổi kích thước. Thu nhỏ/phóng to/khôi phục/đóng popup nằm trong các nút xem trước trên taskbar Windows. Menu chuột phải taskbar có các lệnh tương ứng và Thoát hoàn toàn; nếu Windows không hiển thị hình xem trước, dùng menu này. Đóng popup vẫn khóa và thu xuống khay hệ thống; Ctrl+Alt+T mở lại. Thanh điều khiển của cửa sổ thiết lập riêng được giữ để dễ đóng. Trên Mac, dùng menu ứng dụng hoặc Cmd+Q để thoát bản xem thử.
+
+Đã kiểm tra 31 bài Node và preload/React ở chế độ frameless trên macOS; chưa chạy thao tác taskbar trên Windows 7 thật.

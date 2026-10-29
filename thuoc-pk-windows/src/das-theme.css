@@ -9,6 +9,8 @@ html, body, .app-shell { color: var(--cis-text) !important; background: var(--ci
 .app-shell :is(section, article, aside, input, select, textarea, button, .input-wrap, .sex-toggle, .reference-toggle, .anthropometry-metrics, .brand-mark, .search-box, .mobile-nav) { border-radius: 0 !important; }
 button, input, select, textarea { transition: none !important; }
 .topbar { height: 35px !important; padding: 0 8px !important; gap: 8px !important; border-bottom: 1px solid var(--cis-border-dark) !important; color: var(--cis-text) !important; background: var(--cis-toolbar) !important; }
+.topbar { -webkit-app-region: drag; user-select: none; }
+.topbar :is(button, a, input, select, textarea) { -webkit-app-region: no-drag; }
 .brand-button { gap: 5px !important; color: var(--cis-text) !important; background: transparent !important; }
 .brand-mark { width: 24px !important; height: 24px !important; color: #000066 !important; background: #fff !important; border: 1px solid var(--cis-border) !important; }
 .brand-mark svg { width: 18px; height: 18px; }
