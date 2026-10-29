@@ -1,0 +1,21 @@
+{
+  "name": "Tra cứu — source development",
+  "image": "node:24-bookworm",
+  "postCreateCommand": "npm install -g pnpm@11.25.0 && pnpm --dir duoc-tra-cuu install --frozen-lockfile && pnpm --dir thuoc-pk-windows install --frozen-lockfile",
+  "forwardPorts": [
+    5173
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Tra cứu web",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}

@@ -33,3 +33,12 @@ Sau đó chạy `node scripts/verify-native-helper.js` và `pnpm dist:win7:insta
 ## Kiểm thử
 
 Desktop: `pnpm test` và `pnpm check`. Web: `pnpm build`. Các bài `smoke-*` chạy bằng Electron và một số bài cần website/kênh cập nhật đã phát hành; không coi đó là kiểm thử độc lập cho mọi bản fork.
+
+## Làm việc online bằng GitHub Codespaces
+
+1. Mở kho trên GitHub → **Code → Codespaces → Create codespace on main**.
+2. Chờ môi trường cài Node.js 24 và các phụ thuộc theo lockfile.
+3. Chạy `pnpm --dir duoc-tra-cuu dev --host 0.0.0.0 --port 5173` rồi mở cổng **5173** trong mục **Ports** để xem web. Giữ cổng ở chế độ Private khi làm việc.
+4. Sửa mã, kiểm tra bằng `pnpm --dir duoc-tra-cuu build` và `pnpm --dir thuoc-pk-windows test`, sau đó commit/push về GitHub.
+
+GitHub Actions tự build web và kiểm tra mã desktop sau mỗi push/pull request. Codespaces dùng Linux: có thể sửa mã và chạy kiểm thử Node, nhưng không đọc CIS thật hoặc kiểm chứng cài đặt Windows 7 trong môi trường này. Bản nguồn công khai không kèm các bảng dữ liệu lâm sàng; dữ liệu riêng và thông tin cấu hình phải được cấp riêng, không commit vào kho.
