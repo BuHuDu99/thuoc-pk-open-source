@@ -13,7 +13,7 @@ app.setPath('userData', directory)
 app.disableHardwareAcceleration()
 const timer = setTimeout(() => { console.error('Update feed check timed out'); app.exit(1) }, 45000)
 app.whenReady().then(async () => {
-  for (const version of ['1.2.0', '1.4.5', targetVersion]) {
+  for (const version of ['1.4.7', '1.4.8', targetVersion]) {
   const updater = new NsisUpdater(undefined, {
     version, name: 'Tra cứu', isPackaged: true,
     userDataPath: directory, whenReady: () => app.whenReady(),

@@ -6,6 +6,7 @@ const path = require('path')
 const { pathToFileURL } = require('url')
 const { DASBridge } = require('./das-bridge')
 const { describeUpdateError } = require('./update-errors')
+const { describeNoUpdate } = require('./update-status')
 const { POPUP_OPTIONS, performWindowAction, registerTaskbarControls } = require('./popup-window')
 
 // Dùng thư mục ứng dụng mới để bản "Tra cứu" không bị một tiến trình
@@ -265,7 +266,7 @@ function configureAutoUpdater() {
     writeLog(`Có phiên bản mới ${updateVersion}; bắt đầu tải.`)
   })
 
-  autoUpdater.on('update-not-available', () => {
+  autoUpdater.on('update-not-available', (info) => {
     updateState = 'idle'
     rebuildTrayMenu()
     writeLog('Ứng dụng đang ở phiên bản mới nhất.')
@@ -273,7 +274,7 @@ function configureAutoUpdater() {
       dialog.showMessageBox(mainWindow, {
         type: 'info',
         title: 'Cập nhật Tra cứu',
-        message: `Bạn đang dùng phiên bản mới nhất (${app.getVersion()}).`,
+        ...describeNoUpdate(app.getVersion(), info?.version),
         buttons: ['Đóng'],
         noLink: true,
       })

@@ -1,6 +1,6 @@
 {
   "name": "thuoc-pk-windows",
-  "version": "1.4.7",
+  "version": "1.4.9",
   "private": true,
   "description": "Cửa sổ nổi Tra cứu kết nối trực tiếp thuoc-pk.vercel.app trên Windows 7 trở lên",
   "main": "src/main.js",
